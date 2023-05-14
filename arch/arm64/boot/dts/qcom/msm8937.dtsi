@@ -1,0 +1,287 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Copyright (c) 2023, Dang Huynh <danct12@riseup.net>
+ */
+
+#include "msm8917.dtsi"
+
+/delete-node/ &blsp1_uart1;
+/delete-node/ &cpu_opp_table;
+/delete-node/ &gpu_iommu;
+/delete-node/ &gpu_opp_table;
+/delete-node/ &saw;
+
+/ {
+	cpus {
+		CPU4: cpu@4 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53";
+			reg = <0x0>;
+			enable-method = "psci";
+			operating-points-v2 = <&cpu_opp_table_little>;
+			next-level-cache = <&L2_1>;
+			#cooling-cells = <2>;
+			l1-icache { compatible = "cache"; };
+			l1-dcache { compatible = "cache"; };
+		};
+
+		CPU5: cpu@5 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53";
+			reg = <0x1>;
+			enable-method = "psci";
+			operating-points-v2 = <&cpu_opp_table_little>;
+			next-level-cache = <&L2_1>;
+			#cooling-cells = <2>;
+			l1-icache { compatible = "cache"; };
+			l1-dcache { compatible = "cache"; };
+		};
+
+		CPU6: cpu@6 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53";
+			reg = <0x2>;
+			enable-method = "psci";
+			operating-points-v2 = <&cpu_opp_table_little>;
+			next-level-cache = <&L2_1>;
+			#cooling-cells = <2>;
+			l1-icache { compatible = "cache"; };
+			l1-dcache { compatible = "cache"; };
+		};
+
+		CPU7: cpu@7 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53";
+			reg = <0x3>;
+			enable-method = "psci";
+			operating-points-v2 = <&cpu_opp_table_little>;
+			next-level-cache = <&L2_1>;
+			#cooling-cells = <2>;
+			l1-icache { compatible = "cache"; };
+			l1-dcache { compatible = "cache"; };
+		};
+
+		L2_1: l2-cache_1 {
+			compatible = "cache";
+			cache-level = <2>;
+		};
+
+		cpu_opp_table_big: opp-table {
+			compatible = "operating-points-v2";
+
+			opp-960000000 {
+				opp-hz = /bits/ 64 <960000000>;
+			};
+
+			opp-1094400000 {
+				opp-hz = /bits/ 64 <1094400000>;
+			};
+
+			opp-1209600000 {
+				opp-hz = /bits/ 64 <1209600000>;
+			};
+
+			opp-1248000000 {
+				opp-hz = /bits/ 64 <1248000000>;
+			};
+
+			opp-1344000000 {
+				opp-hz = /bits/ 64 <1344000000>;
+			};
+
+			opp-1401000000 {
+				opp-hz = /bits/ 64 <1401000000>;
+			};
+		};
+
+		cpu_opp_table_little: opp-table {
+			compatible = "operating-points-v2";
+
+			opp-768000000 {
+				opp-hz = /bits/ 64 <768000000>;
+			};
+
+			opp-902400000 {
+				opp-hz = /bits/ 64 <902400000>;
+			};
+
+			opp-998400000 {
+				opp-hz = /bits/ 64 <998400000>;
+			};
+
+			opp-1094400000 {
+				opp-hz = /bits/ 64 <1094400000>;
+			};
+
+			opp-1209600000 {
+				opp-hz = /bits/ 64 <1209600000>;
+			};
+		};
+
+		cpu-map {
+			cluster1 {
+				core0 {
+					cpu = <&CPU4>;
+				};
+
+				core1 {
+					cpu = <&CPU5>;
+				};
+
+				core2 {
+					cpu = <&CPU6>;
+				};
+
+				core3 {
+					cpu = <&CPU7>;
+				};
+			};
+		};
+	};
+};
+
+&CPU0 {
+	operating-points-v2 = <&cpu_opp_table_big>;
+};
+
+&CPU1 {
+	operating-points-v2 = <&cpu_opp_table_big>;
+};
+
+&CPU2 {
+	operating-points-v2 = <&cpu_opp_table_big>;
+};
+
+&CPU3 {
+	operating-points-v2 = <&cpu_opp_table_big>;
+};
+
+&gcc {
+	compatible = "qcom,gcc-msm8937";
+};
+
+&gpu {
+	status = "disabled";
+
+	compatible = "qcom,adreno-505.0", "qcom,adreno";
+	reg = <0x1c00000 0x40000>;
+	reg-names = "kgsl_3d0_reg_memory";
+
+	clock = <&gcc GCC_OXILI_GFX3D_CLK>,
+		<&gcc GCC_OXILI_AHB_CLK>,
+		<&gcc GCC_BIMC_GFX_CLK>,
+		<&gcc GCC_BIMC_GPU_CLK>,
+		<&gcc GCC_OXILI_TIMER_CLK>,
+		<&gcc GCC_OXILI_AON_CLK>;
+	clock-names = "core",
+		      "iface",
+		      "mem_iface",
+		      "alt_mem_iface",
+		      "rbbmtimer",
+		      "alwayson";
+	
+	iommus = <&adreno_smmu 0>;
+
+	gpu_opp_table: opp-table {
+		compatible = "operating-points-v2";
+
+		opp-19200000 {
+			opp-hz = /bits/ 64 <19200000>;
+		};
+
+		opp-216000000 {
+			opp-hz = /bits/ 64 <216000000>;
+		};
+
+		opp-300000000 {
+			opp-hz = /bits/ 64 <300000000>;
+		};
+
+		opp-375000000 {
+			opp-hz = /bits/ 64 <375000000>;
+		};
+
+		opp-400000000 {
+			opp-hz = /bits/ 64 <400000000>;
+		};
+
+		opp-450000000 {
+			opp-hz = /bits/ 64 <450000000>;
+		};
+	};
+};
+
+&rpmcc {
+	compatible = "qcom,rpmcc-msm8937";
+};
+
+&rpmpd {
+	compatible = "qcom,msm8937-rpmpd";
+};
+
+&soc {
+	adreno_smmu: iommu@1c40000 {
+		compatible = "qcom,msm8937-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2";
+		reg = <0x1c40000 0x10000>;
+
+		#global-interrupts = <1>;
+		interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
+		#iommu-cells = <1>;
+
+		clocks = <&gcc GCC_BIMC_GFX_CLK>,
+			 <&gcc GCC_OXILI_AHB_CLK>;
+		clock-names = "bus", "iface";
+	};
+
+	saw: syscon@b1d2000 {
+		compatible = "syscon";
+		reg = <0xb1d2000 0x1000>;
+	};
+};
+
+&thermal_zones {
+	cpuss0-thermal {
+		polling-delay-passive = <250>;
+		polling-delay = <1000>;
+
+		thermal-sensors = <&tsens 9>;
+
+		trips {
+			cpuss0_alert0: trip-point0 {
+				temperature = <75000>;
+				hysteresis = <2000>;
+				type = "passive";
+			};
+
+			cpuss0_alert1: trip-point1 {
+				temperature = <85000>;
+				hysteresis = <2000>;
+				type = "hot";
+			};
+
+			cpuss0_crit: cpuss0-crit {
+				temperature = <100000>;
+				hysteresis = <2000>;
+				type = "critical";
+			};
+		};
+
+		cooling-maps {
+			map0 {
+				trip = <&cpuss0_alert0>;
+				cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+					       <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+					       <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+					       <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+			};
+		};
+	};
+
+	gpu-thermal {
+		thermal-sensors = <&tsens 10>;
+	};
+};
+
