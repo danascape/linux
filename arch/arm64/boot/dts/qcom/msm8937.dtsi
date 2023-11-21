@@ -18,6 +18,7 @@
 			compatible = "arm,cortex-a53";
 			reg = <0x0>;
 			enable-method = "psci";
+			clocks = <&apcs0>;
 			operating-points-v2 = <&cpu_opp_table_little>;
 			next-level-cache = <&L2_1>;
 			#cooling-cells = <2>;
@@ -30,6 +31,7 @@
 			compatible = "arm,cortex-a53";
 			reg = <0x1>;
 			enable-method = "psci";
+			clocks = <&apcs0>;
 			operating-points-v2 = <&cpu_opp_table_little>;
 			next-level-cache = <&L2_1>;
 			#cooling-cells = <2>;
@@ -42,6 +44,7 @@
 			compatible = "arm,cortex-a53";
 			reg = <0x2>;
 			enable-method = "psci";
+			clocks = <&apcs0>;
 			operating-points-v2 = <&cpu_opp_table_little>;
 			next-level-cache = <&L2_1>;
 			#cooling-cells = <2>;
@@ -54,6 +57,7 @@
 			compatible = "arm,cortex-a53";
 			reg = <0x3>;
 			enable-method = "psci";
+			clocks = <&apcs0>;
 			operating-points-v2 = <&cpu_opp_table_little>;
 			next-level-cache = <&L2_1>;
 			#cooling-cells = <2>;
@@ -220,6 +224,14 @@
 };
 
 &soc {
+	a53pll0: clock-controller@b116000 {
+		compatible = "qcom,msm8916-a53pll";
+		reg = <0x0b116000 0x34>;
+		#clock-cells = <0>;
+		clocks = <&xo_board>;
+		clock-names = "xo";
+	};
+
 	adreno_smmu: iommu@1c40000 {
 		compatible = "qcom,msm8937-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2";
 		reg = <0x1c40000 0x10000>;
@@ -234,6 +246,16 @@
 		clocks = <&gcc GCC_BIMC_GFX_CLK>,
 			 <&gcc GCC_OXILI_AHB_CLK>;
 		clock-names = "bus", "iface";
+	};
+
+
+	apcs0: mailbox@b111000 {
+		compatible = "qcom,msm8916-apcs-kpss-global", "syscon";
+		reg = <0x0b111000 0x1000>;
+		#mbox-cells = <1>;
+		clocks = <&a53pll0>, <&gcc GPLL0_EARLY>;
+		clock-names = "pll", "aux";
+		#clock-cells = <0>;
 	};
 
 	saw: syscon@b1d2000 {
