@@ -28,14 +28,12 @@
 			compatible = "fixed-clock";
 			#clock-cells = <0>;
 			clock-frequency = <19200000>;
-			clock-output-names = "xo";
 		};
 
 		sleep_clk: sleep-clk {
 			compatible = "fixed-clock";
 			#clock-cells = <0>;
 			clock-frequency = <32768>;
-			clock-output-names = "sleep_clk";
 		};
 	};
 
@@ -689,7 +687,7 @@
 			#reset-cells = <1>;
 			#power-domain-cells = <1>;
 			reg = <0x01800000 0x80000>;
-			clocks = <&xo_board>,
+			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
 				 <&sleep_clk>,
 				 <0>,
 				 <0>,
@@ -763,16 +761,12 @@
 			compatible = "qcom,msm8939-a53pll";
 			reg = <0x0b116000 0x34>;
 			#clock-cells = <0>;
-			clocks = <&xo_board>;
-			clock-names = "xo";
 		};
 
 		a53pll_c1: clock@b016000 {
 			compatible = "qcom,msm8939-a53pll";
 			reg = <0x0b016000 0x34>;
 			#clock-cells = <0>;
-			clocks = <&xo_board>;
-			clock-names = "xo";
 		};
 
 		apcs0_mbox: mailbox@b111000 {
@@ -991,7 +985,7 @@
 				#phy-cells = <0>;
 
 				clocks = <&gcc GCC_MDSS_AHB_CLK>,
-					 <&xo_board>;
+					 <&rpmcc RPM_SMD_XO_CLK_SRC>;
 				clock-names = "iface", "ref";
 			};
 		};
@@ -1191,7 +1185,7 @@
 			clocks = <&gcc GCC_MSS_CFG_AHB_CLK>,
 				 <&gcc GCC_MSS_Q6_BIMC_AXI_CLK>,
 				 <&gcc GCC_BOOT_ROM_AHB_CLK>,
-				 <&xo_board>;
+				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
 			clock-names = "iface", "bus", "mem", "xo";
 
 			qcom,smem-states = <&modem_smp2p_out 0>;
@@ -1249,7 +1243,7 @@
 			interrupt-names = "hc_irq", "pwr_irq";
 			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
 				 <&gcc GCC_SDCC1_AHB_CLK>,
-				 <&xo_board>;
+				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
 			clock-names = "core", "iface", "xo";
 			power-domains = <&rpmpd MSM8917_VDDCX>;
 			mmc-hs200-1_8v;
@@ -1270,7 +1264,7 @@
 			interrupt-names = "hc_irq", "pwr_irq";
 			clocks = <&gcc GCC_SDCC2_APPS_CLK>,
 				 <&gcc GCC_SDCC2_AHB_CLK>,
-				 <&xo_board>;
+				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
 			clock-names = "core", "iface", "xo";
 			power-domains = <&rpmpd MSM8917_VDDCX>;
 			bus-width = <4>;
@@ -1424,7 +1418,7 @@
 			compatible = "qcom,usb-hs-28nm-femtophy";
 			reg = <0x6c000 0x200>;
 			#phy-cells = <0>;
-			clocks = <&xo_board>,
+			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
 				 <&gcc GCC_USB_HS_PHY_CFG_AHB_CLK>,
 				 <&gcc GCC_USB2A_PHY_SLEEP_CLK>;
 			clock-names = "ref", "ahb", "sleep";
@@ -1545,7 +1539,7 @@
 			compatible = "qcom,msm8937-cpr", "qcom,cpr";
 			reg = <0x0b018000 0x1000>;
 			interrupts = <GIC_SPI 15 IRQ_TYPE_EDGE_RISING>;
-			clocks = <&xo_board>;
+			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
 			clock-names = "ref";
 			#power-domain-cells = <0>;
 			operating-points-v2 = <&cpr_opp_table>;
@@ -1660,7 +1654,7 @@
 
 			clocks = <&q6afecc LPASS_CLK_ID_INTERNAL_DIGITAL_CODEC_CORE
 					   LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-				 <&xo_board>;
+				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
 			clock-names = "mclk", "ahbix-clk";
 			assigned-clocks = <&q6afecc LPASS_CLK_ID_INTERNAL_DIGITAL_CODEC_CORE
 						    LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
