@@ -45,60 +45,57 @@
 			device_type = "cpu";
 			compatible = "arm,cortex-a53";
 			reg = <0x100>;
-			next-level-cache = <&L2_0>;
+			next-level-cache = <&L2_1>;
 			enable-method = "psci";
 			clocks = <&apcs1_mbox>;
 			operating-points-v2 = <&cpu_opp_table_c1>;
 			#cooling-cells = <2>;
 			power-domains = <&CPU_PD0>;
 			power-domain-names = "psci";
-			l1-icache { compatible = "cache"; };
-			l1-dcache { compatible = "cache"; };
+			L2_1: l2-cache {
+				compatible = "cache";
+				cache-level = <2>;
+				cache-unified;
+			};
 		};
 
 		CPU1: cpu@101 {
 			device_type = "cpu";
 			compatible = "arm,cortex-a53";
 			reg = <0x101>;
-			next-level-cache = <&L2_0>;
+			next-level-cache = <&L2_1>;
 			enable-method = "psci";
 			clocks = <&apcs1_mbox>;
 			operating-points-v2 = <&cpu_opp_table_c1>;
 			#cooling-cells = <2>;
 			power-domains = <&CPU_PD1>;
 			power-domain-names = "psci";
-			l1-icache { compatible = "cache"; };
-			l1-dcache { compatible = "cache"; };
 		};
 
 		CPU2: cpu@102 {
 			device_type = "cpu";
 			compatible = "arm,cortex-a53";
 			reg = <0x102>;
-			next-level-cache = <&L2_0>;
+			next-level-cache = <&L2_1>;
 			enable-method = "psci";
 			clocks = <&apcs1_mbox>;
 			operating-points-v2 = <&cpu_opp_table_c1>;
 			#cooling-cells = <2>;
 			power-domains = <&CPU_PD2>;
 			power-domain-names = "psci";
-			l1-icache { compatible = "cache"; };
-			l1-dcache { compatible = "cache"; };
 		};
 
 		CPU3: cpu@103 {
 			device_type = "cpu";
 			compatible = "arm,cortex-a53";
 			reg = <0x103>;
-			next-level-cache = <&L2_0>;
+			next-level-cache = <&L2_1>;
 			enable-method = "psci";
 			clocks = <&apcs1_mbox>;
 			operating-points-v2 = <&cpu_opp_table_c1>;
 			#cooling-cells = <2>;
 			power-domains = <&CPU_PD3>;
 			power-domain-names = "psci";
-			l1-icache { compatible = "cache"; };
-			l1-dcache { compatible = "cache"; };
 		};
 
 		CPU4: cpu@0 {
@@ -108,10 +105,13 @@
 			enable-method = "psci";
 			clocks = <&apcs0_mbox>;
 			operating-points-v2 = <&cpu_opp_table_c0>;
-			next-level-cache = <&L2_1>;
+			next-level-cache = <&L2_0>;
 			#cooling-cells = <2>;
-			l1-icache { compatible = "cache"; };
-			l1-dcache { compatible = "cache"; };
+			L2_0: l2-cache {
+				compatible = "cache";
+				cache-level = <2>;
+				cache-unified;
+			};
 		};
 
 		CPU5: cpu@1 {
@@ -121,10 +121,8 @@
 			enable-method = "psci";
 			clocks = <&apcs0_mbox>;
 			operating-points-v2 = <&cpu_opp_table_c0>;
-			next-level-cache = <&L2_1>;
+			next-level-cache = <&L2_0>;
 			#cooling-cells = <2>;
-			l1-icache { compatible = "cache"; };
-			l1-dcache { compatible = "cache"; };
 		};
 
 		CPU6: cpu@2 {
@@ -134,10 +132,8 @@
 			enable-method = "psci";
 			clocks = <&apcs0_mbox>;
 			operating-points-v2 = <&cpu_opp_table_c0>;
-			next-level-cache = <&L2_1>;
+			next-level-cache = <&L2_0>;
 			#cooling-cells = <2>;
-			l1-icache { compatible = "cache"; };
-			l1-dcache { compatible = "cache"; };
 		};
 
 		CPU7: cpu@3 {
@@ -147,20 +143,8 @@
 			enable-method = "psci";
 			clocks = <&apcs0_mbox>;
 			operating-points-v2 = <&cpu_opp_table_c0>;
-			next-level-cache = <&L2_1>;
+			next-level-cache = <&L2_0>;
 			#cooling-cells = <2>;
-			l1-icache { compatible = "cache"; };
-			l1-dcache { compatible = "cache"; };
-		};
-
-		L2_1: l2-cache_1 {
-			compatible = "cache";
-			cache-level = <2>;
-		};
-
-		L2_0: l2-cache {
-			compatible = "cache";
-			cache-level = <2>;
 		};
 
 		cpu-map {
