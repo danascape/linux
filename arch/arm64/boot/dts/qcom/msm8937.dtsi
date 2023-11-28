@@ -769,6 +769,17 @@
 			clocks = <&a53pll_c1>, <&gcc GPLL0_EARLY>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
 			clock-names = "pll", "aux", "ref";
 			#clock-cells = <0>;
+			assigned-clocks = <&apcs2>;
+			assigned-clock-rates = <400000000>;
+		};
+
+		apcs2: mailbox@b1d1000 {
+			compatible = "qcom,msm8939-apcs-kpss-global", "syscon";
+			reg = <0x0b1d1000 0x1000>;
+			#mbox-cells = <1>;
+			clocks = <&gcc GPLL0_EARLY>, <&gcc GPLL0_EARLY>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
+			clock-names = "pll", "aux", "ref";
+			#clock-cells = <0>;
 		};
 
 		tcsr_mutex: hwlock@1905000 {
