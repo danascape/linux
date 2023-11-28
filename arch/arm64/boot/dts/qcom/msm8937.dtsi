@@ -757,8 +757,8 @@
 			compatible = "qcom,msm8939-apcs-kpss-global", "syscon";
 			reg = <0x0b111000 0x1000>;
 			#mbox-cells = <1>;
-			clocks = <&a53pll_c0>, <&gcc GPLL0_EARLY>;
-			clock-names = "pll", "aux";
+			clocks = <&a53pll_c0>, <&gcc GPLL0_EARLY>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
+			clock-names = "pll", "aux", "ref";
 			#clock-cells = <0>;
 		};
 
@@ -766,8 +766,8 @@
 			compatible = "qcom,msm8939-apcs-kpss-global", "syscon";
 			reg = <0x0b011000 0x1000>;
 			#mbox-cells = <1>;
-			clocks = <&a53pll_c1>, <&gcc GPLL0_EARLY>;
-			clock-names = "pll", "aux";
+			clocks = <&a53pll_c1>, <&gcc GPLL0_EARLY>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
+			clock-names = "pll", "aux", "ref";
 			#clock-cells = <0>;
 		};
 
