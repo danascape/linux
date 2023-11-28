@@ -356,6 +356,10 @@
 		opp-1401000000 {
 			opp-hz = /bits/ 64 <1401000000>;
 		};
+
+		opp-1497600000 {
+			opp-hz = /bits/ 64 <1497600000>;
+		};
 	};
 
 	cpu_opp_table_c1: opp-table-c1 {
