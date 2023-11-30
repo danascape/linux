@@ -798,7 +798,7 @@
 		};
 
 		adreno_smmu: iommu@1c40000 {
-			compatible = "qcom,msm8937-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2";
+			compatible = "qcom,msm8998-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2";
 			reg = <0x1c40000 0x10000>;
 
 			#global-interrupts = <1>;
@@ -808,9 +808,10 @@
 				     <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
 			#iommu-cells = <1>;
 
-			clocks = <&gcc GCC_BIMC_GFX_CLK>,
-				 <&gcc GCC_OXILI_AHB_CLK>;
-			clock-names = "bus", "iface";
+			clocks = <&gcc GCC_OXILI_AHB_CLK>, <&gcc GCC_BIMC_GFX_CLK>;
+			clock-names = "iface", "bus";
+
+			power-domains = <&gcc OXILI_CX_GDSC>;
 		};
 
 		apps_iommu: iommu@1e00000 {
