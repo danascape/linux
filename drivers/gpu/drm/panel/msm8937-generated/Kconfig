@@ -1,0 +1,24 @@
+menu "MSM8937 panel drivers generated with linux-mdss-dsi-panel-driver-generator"
+	depends on GPIOLIB && OF && REGULATOR
+	depends on DRM_MIPI_DSI
+
+config DRM_PANEL_MSM8937_GENERATED
+	tristate "Select all generated MSM8937 panel drivers by default"
+
+config DRM_PANEL_XIAOMI_RIVA_HX8394F
+	tristate "Xiaomi RIVA HX8394F"
+	default DRM_PANEL_MSM8937_GENERATED
+
+config DRM_PANEL_XIAOMI_RIVA_ILI9881C
+	tristate "Xiaomi RIVA ILI9881C"
+	default DRM_PANEL_MSM8937_GENERATED
+
+config DRM_PANEL_XIAOMI_SANTONI_HX8394F
+	tristate "Xiaomi SANTONI HX8394F"
+	default DRM_PANEL_MSM8937_GENERATED
+
+config DRM_PANEL_XIAOMI_UGGLITE_OTM1901A
+	tristate "Xiaomi UGGLITE OTM1901A"
+	default DRM_PANEL_MSM8937_GENERATED
+
+endmenu
