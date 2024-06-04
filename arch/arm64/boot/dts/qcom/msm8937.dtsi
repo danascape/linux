@@ -714,6 +714,7 @@
 				      "rbbmtimer",
 				      "alwayson";
 			operating-points-v2 = <&gpu_opp_table>;
+			power-domains = <&gcc OXILI_GX_GDSC>;
 
 			iommus = <&adreno_smmu 0>;
 
