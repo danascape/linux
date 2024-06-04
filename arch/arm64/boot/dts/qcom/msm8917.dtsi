@@ -581,8 +581,8 @@
 			reg = <0x01800000 0x80000>;
 			clocks = <&xo_board>,
 				 <&sleep_clk>,
-				 <0>,
-				 <0>;
+				 <&dsi_phy0 1>,
+				 <&dsi_phy0 0>;
 			clock-names = "xo",
 				      "sleep_clk",
 				      "dsi0pll",
