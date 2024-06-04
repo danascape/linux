@@ -812,11 +812,12 @@
 		};
 
 		adreno_smmu: iommu@1c40000 {
-			compatible = "qcom,msm8998-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2";
+			compatible = "qcom,msm8937-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2";
 			reg = <0x1c40000 0x10000>;
 
 			#global-interrupts = <1>;
-			interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>,
+			interrupts = <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>,
 				     <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>,
 				     <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>,
 				     <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
