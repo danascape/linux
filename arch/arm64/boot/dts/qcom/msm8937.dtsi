@@ -1000,7 +1000,7 @@
 			};
 
 			dsi_phy0: dsi-phy@1a94400 {
-				compatible = "qcom,dsi-phy-28nm-lp-8937";
+				compatible = "qcom,dsi-phy-28nm-8937";
 				reg = <0x01a94a00 0xd4>,
 				      <0x01a94400 0x280>,
 				      <0x01a94b80 0x30>;
