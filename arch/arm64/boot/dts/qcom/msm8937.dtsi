@@ -701,7 +701,7 @@
 			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
 			interrupt-names = "kgsl_3d0_irq";
 			#cooling-cells = <2>;
-			clock = <&gcc GCC_OXILI_GFX3D_CLK>,
+			clocks = <&gcc GCC_OXILI_GFX3D_CLK>,
 				<&gcc GCC_OXILI_AHB_CLK>,
 				<&gcc GCC_BIMC_GFX_CLK>,
 				<&gcc GCC_BIMC_GPU_CLK>,
