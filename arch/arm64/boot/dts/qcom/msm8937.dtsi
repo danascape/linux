@@ -677,8 +677,8 @@
 			reg = <0x01800000 0x80000>;
 			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
 				 <&sleep_clk>,
-				 <0>,
-				 <0>,
+				 <&dsi_phy0 1>,
+				 <&dsi_phy0 0>,
 				 <0>,
 				 <0>;
 			clock-names = "xo",
