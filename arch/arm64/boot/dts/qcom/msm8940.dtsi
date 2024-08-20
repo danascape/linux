@@ -10,5 +10,5 @@
 };
 
 &rpmcc {
-	compatible = "qcom,rpmcc-msm8940";
+	compatible = "qcom,rpmcc-msm8940", "qcom,rpmcc";
 };

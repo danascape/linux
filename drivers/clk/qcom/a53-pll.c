@@ -79,6 +79,7 @@ static struct pll_freq_tbl *qcom_a53pll_get_freq_tbl(struct device *dev)
 		freq_tbl[i].l = freq / xo_freq;
 		freq_tbl[i].n = 1;
 
+		pr_err("freq: %lu, l: %d, n: %d\n", freq_tbl[i].freq, freq_tbl[i].l, freq_tbl[i].n);
 		dev_pm_opp_put(opp);
 	}
 

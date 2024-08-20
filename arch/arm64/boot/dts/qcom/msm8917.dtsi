@@ -123,8 +123,6 @@
 			#cooling-cells = <2>;
 			power-domains = <&CPU_PD0>;
 			power-domain-names = "psci";
-			l1-icache { compatible = "cache"; };
-			l1-dcache { compatible = "cache"; };
 		};
 
 		CPU1: cpu@1 {
@@ -138,8 +136,6 @@
 			#cooling-cells = <2>;
 			power-domains = <&CPU_PD1>;
 			power-domain-names = "psci";
-			l1-icache { compatible = "cache"; };
-			l1-dcache { compatible = "cache"; };
 		};
 
 		CPU2: cpu@2 {
@@ -153,8 +149,6 @@
 			#cooling-cells = <2>;
 			power-domains = <&CPU_PD2>;
 			power-domain-names = "psci";
-			l1-icache { compatible = "cache"; };
-			l1-dcache { compatible = "cache"; };
 		};
 
 		CPU3: cpu@3 {
@@ -168,13 +162,12 @@
 			#cooling-cells = <2>;
 			power-domains = <&CPU_PD3>;
 			power-domain-names = "psci";
-			l1-icache { compatible = "cache"; };
-			l1-dcache { compatible = "cache"; };
 		};
 
 		L2_0: l2-cache {
 			compatible = "cache";
 			cache-level = <2>;
+			cache-unified;
 		};
 
 		cpu-map {
@@ -708,6 +701,8 @@
 
 				interrupt-parent = <&mdss>;
 				interrupts = <0>;
+
+				power-domains = <&gcc MDSS_GDSC>;
 
 				clocks = <&gcc GCC_MDSS_AHB_CLK>,
 					 <&gcc GCC_MDSS_AXI_CLK>,
@@ -1556,6 +1551,7 @@
 			assigned-clocks = <&q6afecc LPASS_CLK_ID_INTERNAL_DIGITAL_CODEC_CORE
 						    LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
 			assigned-clock-rates = <9600000>;
+			status = "disabled";
 		};
 
 		adsp: remoteproc@c200000 {

@@ -64,6 +64,14 @@
 			reg = <0x0 0x90001000 0x0 (720 * 1280 * 3)>;
 			no-map;
 		};
+
+		ramoops@b0000000 {
+			compatible = "ramoops";
+			reg = <0x00 0xb0000000 0x00 0x800000>;
+			record-size = <0x200000>;
+			console-size = <0x200000>;
+			pmsg-size = <0x200000>;
+		};
 	};
 
 	vph_pwr: vph-pwr-regulator {
