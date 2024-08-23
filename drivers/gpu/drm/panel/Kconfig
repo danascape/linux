@@ -951,4 +951,5 @@ config DRM_PANEL_XINPENG_XPP055C272
 	  system interfaces.
 source "drivers/gpu/drm/panel/msm8916-generated/Kconfig"
 source "drivers/gpu/drm/panel/msm8937-generated/Kconfig"
+source "drivers/gpu/drm/panel/msm89x7-generated/Kconfig"
 endmenu

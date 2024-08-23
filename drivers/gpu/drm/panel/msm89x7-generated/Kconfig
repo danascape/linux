@@ -1,0 +1,12 @@
+menu "MSM89x7 panel drivers generated with linux-mdss-dsi-panel-driver-generator"
+	depends on GPIOLIB && OF && REGULATOR
+	depends on DRM_MIPI_DSI
+
+config DRM_PANEL_MSM89X7_GENERATED
+	tristate "Select all generated MSM89X7 panel drivers by default"
+
+config DRM_PANEL_MOTOROLA_MONTANA_TIANMA
+	tristate "Motorola MONTANA TIANMA"
+	default DRM_PANEL_MSM89X7_GENERATED
+
+endmenu
