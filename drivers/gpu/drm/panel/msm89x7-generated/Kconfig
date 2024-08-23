@@ -5,6 +5,10 @@ menu "MSM89x7 panel drivers generated with linux-mdss-dsi-panel-driver-generator
 config DRM_PANEL_MSM89X7_GENERATED
 	tristate "Select all generated MSM89X7 panel drivers by default"
 
+config DRM_PANEL_MOTOROLA_CEDRIC_497_TIANMA
+	tristate "Motorola CEDRIC 497 TIANMA"
+	default DRM_PANEL_MSM89X7_GENERATED
+
 config DRM_PANEL_MOTOROLA_MONTANA_TIANMA
 	tristate "Motorola MONTANA TIANMA"
 	default DRM_PANEL_MSM89X7_GENERATED
